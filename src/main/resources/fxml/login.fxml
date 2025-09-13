@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.image.ImageView?>
 <StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
            fx:controller="com.biblio.controller.LoginController" styleClass="root">
     <children>
         <VBox alignment="CENTER" spacing="12">
-            <ImageView image="..@images/tu_imagen.png"/>
+            <ImageView image="@../images/tu_imagen.png"/>
             <Label text="Bienvenido a Biblio" styleClass="login-title"/>
             <VBox alignment="CENTER" spacing="12" styleClass="login-box">
                 <GridPane hgap="8" vgap="8">
@@ -21,5 +21,6 @@
                 <Label fx:id="msgLabel" styleClass="msg"/>
             </VBox>
         </VBox>
- </children>
-        </StackPane>
+    </children>
+</StackPane>
+
