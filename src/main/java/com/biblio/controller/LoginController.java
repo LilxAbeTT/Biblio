@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -15,8 +16,11 @@ public class LoginController {
 
     @FXML private TextField userField;
     @FXML private PasswordField passField;
+    private TextField passText;
+    @FXML private CheckBox showPassChk;
     @FXML private Label msgLabel;
     @FXML private ImageView logoView;
+    @FXML private Button btnSalir;
 
     @FXML
     private void initialize() {
@@ -32,6 +36,28 @@ public class LoginController {
         } else {
             System.err.println("No se encontró /images/logo.png en el classpath");
         }
+
+        // Campo alterno para mostrar texto plano de la contraseña
+        passText = new TextField();
+        passText.setManaged(false);
+        passText.setVisible(false);
+        passText.textProperty().bindBidirectional(passField.textProperty());
+        ((GridPane) passField.getParent()).add(passText, 1, 1);
+
+        // Conmutar visibilidad de los campos según el checkbox
+        showPassChk.selectedProperty().addListener((obs, oldVal, selected) -> {
+            if (selected) {
+                passText.setManaged(true);
+                passText.setVisible(true);
+                passField.setManaged(false);
+                passField.setVisible(false);
+            } else {
+                passText.setManaged(false);
+                passText.setVisible(false);
+                passField.setManaged(true);
+                passField.setVisible(true);
+            }
+        });
 
         // Mensaje inicial opcional
         // msgLabel.setText("");
@@ -57,5 +83,10 @@ public class LoginController {
             msgLabel.setText("Error: " + ex.getMessage());
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    private void salir() {
+        ((Stage) btnSalir.getScene().getWindow()).close();
     }
 }
