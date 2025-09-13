@@ -45,6 +45,21 @@
         <content>
             <VBox spacing="10">
                 <padding><Insets topRightBottomLeft="10"/></padding>
+                <CheckBox fx:id="servPcCheck" text="Uso de computadora con internet"/>
+                <Label text="PC:" GridPane.columnIndex="1"/>
+                <ComboBox fx:id="pcCombo" GridPane.columnIndex="2" prefWidth="140"/>
+
+                <CheckBox fx:id="consultaSalaCheck" text="Consulta en sala" GridPane.rowIndex="1"/>
+                <CheckBox fx:id="lecturaSalaCheck" text="Préstamo/lectura en sala" GridPane.rowIndex="2"/>
+                <CheckBox fx:id="trabajoPersonalCheck" text="Trabajo personal" GridPane.rowIndex="3"/>
+                <CheckBox fx:id="trabajoEquipoCheck" text="Trabajo en equipo" GridPane.rowIndex="4"/>
+                <Label text="Tamaño grupo:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <ComboBox fx:id="tamEquipoCombo" GridPane.rowIndex="4" GridPane.columnIndex="2" prefWidth="80" visible="false" managed="false"/>
+
+                <Label text="Observación:" GridPane.rowIndex="5"/>
+                <TextField fx:id="obsField" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
+            </GridPane>
+
 
                 <!-- Tipo de trabajo -->
                 <VBox spacing="8">
@@ -80,6 +95,7 @@
             </VBox>
         </content>
     </TitledPane>
+    <VBox fx:id="integrantesBox" spacing="5" visible="false" managed="false"/>
 
     <HBox spacing="10">
         <Button fx:id="registrarBtn" text="Registrar Visita" onAction="#registrarVisita"/>
