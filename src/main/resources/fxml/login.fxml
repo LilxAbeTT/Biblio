@@ -8,6 +8,8 @@
     <children>
         <VBox alignment="CENTER" spacing="12">
             <ImageView fx:id="logoView" fitHeight="250.0" fitWidth="250.0" preserveRatio="true" />
+        <VBox alignment="CENTER" spacing="12" StackPane.alignment="CENTER" maxWidth="360">
+            <ImageView fx:id="logoView" fitHeight="250.0" fitWidth="1.0" preserveRatio="true" />
             <Label styleClass="login-title" text="Bienvenido a Biblio" />
             <VBox alignment="CENTER" spacing="12" styleClass="login-box">
                 <GridPane hgap="8" vgap="8">
