@@ -73,6 +73,53 @@ public class RegistrarVisitaController {
     }
 
     @FXML
+    public void buscarEstudiante() {
+        try {
+            Estudiante e = estudianteDAO.findByNumControl(numControlField.getText().trim());
+            if (e != null) {
+                nombreField.setText(e.getNombre());
+                generoCombo.setValue(e.getGenero());
+                carreraCombo.setValue(e.getCarrera());
+                nombreField.setDisable(true);
+                generoCombo.setDisable(true);
+                carreraCombo.setDisable(true);
+                altaMsg.setText("Estudiante encontrado.");
+            } else {
+                nombreField.clear();
+                generoCombo.getSelectionModel().clearSelection();
+                carreraCombo.getSelectionModel().clearSelection();
+                nombreField.setDisable(false);
+                generoCombo.setDisable(false);
+                carreraCombo.setDisable(false);
+                altaMsg.setText("Nuevo estudiante.");
+            }
+        } catch (Exception ex) {
+            altaMsg.setText("Error: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void guardarEstudiante() {
+        try {
+            String nc = numControlField.getText().trim();
+            String nombre = nombreField.getText().trim();
+            String genero = generoCombo.getValue();
+            String carrera = carreraCombo.getValue();
+
+            if (nombre.isEmpty() || genero == null || carrera == null) {
+                altaMsg.setText("Capture nombre, género y carrera.");
+                return;
+            }
+
+            if (estudianteDAO.findByNumControl(nc) != null) {
+                altaMsg.setText("Ya existe un estudiante con ese número de control.");
+                return;
+            }
+
+            Estudiante e = estudianteDAO.upsertRapido(nc, nombre, genero, carrera);
+            altaMsg.setText("OK: " + e.getNombre() + " [" + e.getNumControl() + "]");
+            buscarEstudiante();
     public void guardarEstudiante() {
         try {
             String nc = numControlField.getText().trim();
