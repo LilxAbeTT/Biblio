@@ -13,10 +13,13 @@
             <GridPane hgap="8" vgap="8">
                 <padding><Insets topRightBottomLeft="10"/></padding>
                 <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="userField" promptText="admin" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
                 <TextField fx:id="userField" promptText="admin" GridPane.rowIndex="0" GridPane.columnIndex="1" onAction="#login"/>
                 <Label text="Contraseña:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <PasswordField fx:id="passField" promptText="admin" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
                 <PasswordField fx:id="passField" promptText="admin" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#login"/>
             </GridPane>
+            <Button text="Ingresar" onAction="#login"/>
             <Button text="Ingresar" onAction="#login" defaultButton="true"/>
             <Label fx:id="msgLabel" styleClass="msg"/>
         </VBox>
