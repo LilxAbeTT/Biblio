@@ -35,13 +35,14 @@
                 <CheckBox fx:id="trabajoPersonalCheck" text="Trabajo personal" GridPane.rowIndex="3"/>
                 <CheckBox fx:id="trabajoEquipoCheck" text="Trabajo en equipo" GridPane.rowIndex="4"/>
                 <Label text="Tamaño grupo:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-                <TextField fx:id="grupoField" promptText="n" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+                <ComboBox fx:id="tamEquipoCombo" GridPane.rowIndex="4" GridPane.columnIndex="2" prefWidth="80" visible="false" managed="false"/>
 
                 <Label text="Observación:" GridPane.rowIndex="5"/>
                 <TextField fx:id="obsField" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
             </GridPane>
         </content>
     </TitledPane>
+    <VBox fx:id="integrantesBox" spacing="5" visible="false" managed="false"/>
 
     <HBox spacing="10">
         <Button text="Registrar Visita" onAction="#registrarVisita"/>
