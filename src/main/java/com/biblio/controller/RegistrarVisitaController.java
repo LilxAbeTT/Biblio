@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class RegistrarVisitaController {
 
@@ -30,8 +32,31 @@ public class RegistrarVisitaController {
 
     @FXML
     public void initialize() {
+        loadAvailablePcs();
+        pcCombo.setDisable(true);
+        servPcCheck.selectedProperty().addListener((obs, oldV, newV) -> {
+            pcCombo.setDisable(!newV);
+            if (newV) loadAvailablePcs();
+        });
+    }
+
+    private void loadAvailablePcs() {
         try {
-            pcDAO.findAllActivas().forEach(pc -> pcCombo.getItems().add(pc.getEtiqueta()));
+            pcCombo.getItems().clear();
+            var pcs = pcDAO.findAllActivas();
+            Set<Integer> ocupadas = sesionDAO.activas().stream()
+                    .filter(s -> s.getEstado() == EstadoSesionPc.ACTIVA)
+                    .map(SesionPc::getPcId)
+                    .collect(Collectors.toSet());
+            pcs.stream()
+                    .filter(pc -> !ocupadas.contains(pc.getId()))
+                    .forEach(pc -> pcCombo.getItems().add(pc.getEtiqueta()));
+            boolean hayLibres = !pcCombo.getItems().isEmpty();
+            servPcCheck.setDisable(!hayLibres);
+            if (!hayLibres) {
+                servPcCheck.setSelected(false);
+                regMsg.setText("No hay PCs disponibles.");
+            }
         } catch (SQLException e) {
             regMsg.setText("Error cargando PCs: " + e.getMessage());
         }
