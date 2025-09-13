@@ -12,6 +12,14 @@
         <content>
             <VBox spacing="8">
                 <padding><Insets topRightBottomLeft="10"/></padding>
+                <TextField fx:id="numControlField" promptText="Num. control" onAction="#buscarEstudiante"/>
+                <TextField fx:id="nombreField" promptText="Nombre"/>
+                <ComboBox fx:id="generoCombo" promptText="Género"/>
+                <ComboBox fx:id="carreraCombo" promptText="Carrera"/>
+                <Button text="Guardar/Usar" onAction="#guardarEstudiante"/>
+                <Label fx:id="altaMsg"/>
+            </HBox>
+
 
                 <HBox spacing="8">
                     <TextField fx:id="numControlField" promptText="Num. control"/>
