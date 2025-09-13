@@ -46,6 +46,7 @@ public class RegistrarVisitaController {
     @FXML private VBox datosEstudianteBox;
     @FXML private Button guardarBtn;
     @FXML private Label altaMsg, regMsg;
+    @FXML private Button limpiarTodoBtn;
     @FXML private Button registrarBtn, limpiarTodoBtn;
 
     private final EstudianteDAO estudianteDAO = new EstudianteDAO();
@@ -443,18 +444,37 @@ public class RegistrarVisitaController {
                 s.setAvisado(false);
                 sesionDAO.crear(s);
             }
+            regMsg.setText("Visita registrada (#" + idVisita + ")");
+            new Alert(Alert.AlertType.INFORMATION, "Visita registrada").showAndWait();
+            limpiarFormulario();
         } catch (Exception e) {
             regMsg.setText("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
+    private void limpiarBusqueda() {
     @FXML
     public void limpiarFormulario() {
         numControlField.clear();
         nombreField.clear();
         generoField.clear();
         carreraField.clear();
+        altaMsg.setText("");
+    }
+
+    @FXML
+    public void limpiarFormulario() {
+        limpiarBusqueda();
+        servPcCheck.setSelected(false);
+        consultaSalaCheck.setSelected(false);
+        lecturaSalaCheck.setSelected(false);
+        trabajoPersonalCheck.setSelected(false);
+        trabajoEquipoCheck.setSelected(false);
+        pcCombo.getSelectionModel().clearSelection();
+        grupoField.clear();
+        obsField.clear();
+        regMsg.setText("");
         servPcCheck.setSelected(false);
         consultaRapidaCheck.setSelected(false);
         lecturaSalaCheck.setSelected(false);

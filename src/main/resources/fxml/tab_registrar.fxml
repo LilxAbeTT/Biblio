@@ -98,6 +98,9 @@
     <VBox fx:id="integrantesBox" spacing="5" visible="false" managed="false"/>
 
     <HBox spacing="10">
+        <Button text="Registrar Visita" onAction="#registrarVisita"/>
+        <Button fx:id="limpiarTodoBtn" text="Limpiar" onAction="#limpiarFormulario"/>
+
         <Button fx:id="registrarBtn" text="Registrar Visita" onAction="#registrarVisita"/>
         <Button fx:id="limpiarTodoBtn" text="Limpiar todo" onAction="#limpiarFormulario"/>
         <Label fx:id="regMsg"/>
