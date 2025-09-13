@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.biblio.controller.ConfigController" fitToWidth="true">
+    <content>
+        <VBox spacing="12">
+            <padding><Insets topRightBottomLeft="12"/></padding>
+
+            <TitledPane text="Tiempos de PC" expanded="true">
+                <content>
+                    <GridPane hgap="8" vgap="8">
+                        <padding><Insets topRightBottomLeft="10"/></padding>
+                        <Label text="Duración por defecto (min):"/>
+                        <TextField fx:id="duracionField" GridPane.columnIndex="1" promptText="60"/>
+                        <Label text="Aviso antes de vencer (min):" GridPane.rowIndex="1"/>
+                        <TextField fx:id="avisoField" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="5"/>
+                        <Button text="Guardar" onAction="#guardarTiempos" GridPane.rowIndex="2"/>
+                        <Label fx:id="msgTiempos" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    </GridPane>
+                </content>
+            </TitledPane>
+
+            <TitledPane text="Correo (SMTP)" expanded="true">
+                <content>
+                    <GridPane hgap="8" vgap="8">
+                        <padding><Insets topRightBottomLeft="10"/></padding>
+                        <Label text="Host:"/>
+                        <TextField fx:id="smtpHost" GridPane.columnIndex="1"/>
+                        <Label text="Puerto:" GridPane.rowIndex="1"/>
+                        <TextField fx:id="smtpPort" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="587"/>
+                        <Label text="Usuario:" GridPane.rowIndex="2"/>
+                        <TextField fx:id="smtpUser" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        <Label text="Contraseña:" GridPane.rowIndex="3"/>
+                        <PasswordField fx:id="smtpPass" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                        <Label text="Remitente (from):" GridPane.rowIndex="4"/>
+                        <TextField fx:id="smtpFrom" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                        <Button text="Guardar" onAction="#guardarSMTP" GridPane.rowIndex="5"/>
+                        <Label fx:id="msgSMTP" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                    </GridPane>
+                </content>
+            </TitledPane>
+
+            <TitledPane text="Destinatarios de reportes" expanded="true">
+                <content>
+                    <VBox spacing="8">
+                        <padding><Insets topRightBottomLeft="10"/></padding>
+                        <HBox spacing="8">
+                            <TextField fx:id="emailField" promptText="correo@dominio.com"/>
+                            <Button text="Agregar" onAction="#agregarEmail"/>
+                            <Button text="Eliminar seleccionado" onAction="#eliminarEmail"/>
+                        </HBox>
+                        <TableView fx:id="tablaEmails" prefHeight="240">
+                            <columns>
+                                <TableColumn text="ID" fx:id="colId" prefWidth="80"/>
+                                <TableColumn text="Email" fx:id="colEmail" prefWidth="340"/>
+                            </columns>
+                        </TableView>
+                        <Label fx:id="msgEmails"/>
+                    </VBox>
+                </content>
+            </TitledPane>
+        </VBox>
+    </content>
+</ScrollPane>

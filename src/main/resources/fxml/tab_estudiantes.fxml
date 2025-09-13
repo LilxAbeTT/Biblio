@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.biblio.controller.EstudiantesController" spacing="8">
+    <padding><Insets topRightBottomLeft="10"/></padding>
+
+    <HBox spacing="8">
+        <TextField fx:id="buscarField" promptText="Buscar por número o nombre" HBox.hgrow="ALWAYS"/>
+        <Button text="Buscar" onAction="#buscar"/>
+        <Button text="Nuevo" onAction="#nuevo"/>
+        <Button text="Guardar" onAction="#guardar"/>
+        <Button text="Eliminar" onAction="#eliminar"/>
+        <Label fx:id="msgLabel"/>
+    </HBox>
+
+    <GridPane hgap="8" vgap="8">
+        <Label text="NumControl:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="numControlField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="nombreField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Género:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="generoField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <Label text="Carrera:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="carreraField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <TableView fx:id="tabla" prefHeight="420">
+        <columns>
+            <TableColumn text="ID" fx:id="colId" prefWidth="60"/>
+            <TableColumn text="NumControl" fx:id="colNum" prefWidth="140"/>
+            <TableColumn text="Nombre" fx:id="colNom" prefWidth="260"/>
+            <TableColumn text="Género" fx:id="colGen" prefWidth="100"/>
+            <TableColumn text="Carrera" fx:id="colCar" prefWidth="200"/>
+        </columns>
+    </TableView>
+</VBox>

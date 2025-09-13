@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.biblio.controller.ReportesController" spacing="10">
+    <padding><Insets topRightBottomLeft="10"/></padding>
+
+    <HBox spacing="8">
+        <Label text="Rango:"/>
+        <DatePicker fx:id="desdePicker"/>
+        <DatePicker fx:id="hastaPicker"/>
+        <Button text="Totales por servicio" onAction="#generarTotales"/>
+        <Button text="Ocupación PCs" onAction="#generarOcupacion"/>
+        <Button text="Promedio estancias" onAction="#generarPromedios"/>
+    </HBox>
+
+    <HBox spacing="8">
+        <Button text="Exportar CSV" onAction="#exportarCsv"/>
+        <Button text="Exportar Excel" onAction="#exportarExcel"/>
+        <Button text="Exportar PDF" onAction="#exportarPdf"/>
+        <Button text="Enviar por correo" onAction="#enviarCorreo"/>
+        <Label fx:id="repMsg"/>
+    </HBox>
+
+    <TableView fx:id="tablaReporte" prefHeight="420"/>
+</VBox>

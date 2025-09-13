@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="750" prefWidth="1200" styleClass="root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.controller.MainController">
+    <top>
+        <ToolBar stylesheets="@../css/style.css">
+            <Label styleClass="title" text="Biblio - Panel de Recepción" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button onAction="#logout" text="Cerrar sesión" />
+        </ToolBar>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane" stylesheets="@../css/style.css">
+            <Tab closable="false" text="Registrar visita">
+                <fx:include source="tab_registrar.fxml" />
+            </Tab>
+            <Tab closable="false" text="Estudiantes">
+                <fx:include source="tab_estudiantes.fxml" />
+            </Tab>
+            <Tab closable="false" text="PCs">
+                <fx:include source="tab_pcs.fxml" />
+            </Tab>
+            <Tab closable="false" text="Sesiones">
+                <fx:include source="tab_sesiones.fxml" />
+            </Tab>
+            <Tab closable="false" text="Reportes">
+                <fx:include source="tab_reportes.fxml" />
+            </Tab>
+            <Tab closable="false" text="Configuración">
+                <fx:include source="tab_config.fxml" />
+            </Tab>
+        </TabPane>
+    </center>
+</BorderPane>

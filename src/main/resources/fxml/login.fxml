@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.biblio.controller.LoginController"
+            prefWidth="420" prefHeight="280" styleClass="root">
+    <center>
+        <VBox spacing="12" alignment="CENTER">
+            <Label text="Biblio - Recepción" styleClass="title"/>
+            <GridPane hgap="8" vgap="8">
+                <padding><Insets topRightBottomLeft="10"/></padding>
+                <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="userField" promptText="admin" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <Label text="Contraseña:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <PasswordField fx:id="passField" promptText="admin" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+            <Button text="Ingresar" onAction="#login"/>
+            <Label fx:id="msgLabel" styleClass="msg"/>
+        </VBox>
+    </center>
+</BorderPane>
