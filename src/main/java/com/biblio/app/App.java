@@ -14,6 +14,7 @@ public class App extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
         Scene scene = new Scene(loader.load());
+        stage.setMaximized(true);
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
         stage.setTitle("Biblio - Acceso");
         stage.setScene(scene);
