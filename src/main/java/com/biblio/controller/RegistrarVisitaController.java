@@ -22,6 +22,7 @@ public class RegistrarVisitaController {
     @FXML private CheckBox servPcCheck, consultaSalaCheck, lecturaSalaCheck, trabajoPersonalCheck, trabajoEquipoCheck;
     @FXML private ComboBox<String> pcCombo;
     @FXML private Label altaMsg, regMsg;
+    @FXML private Button limpiarTodoBtn;
 
     private final EstudianteDAO estudianteDAO = new EstudianteDAO();
     private final PcDAO pcDAO = new PcDAO();
@@ -92,9 +93,33 @@ public class RegistrarVisitaController {
                 sesionDAO.crear(s);
             }
             regMsg.setText("Visita registrada (#" + idVisita + ")");
+            new Alert(Alert.AlertType.INFORMATION, "Visita registrada").showAndWait();
+            limpiarFormulario();
         } catch (Exception e) {
             regMsg.setText("Error: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private void limpiarBusqueda() {
+        numControlField.clear();
+        nombreField.clear();
+        generoField.clear();
+        carreraField.clear();
+        altaMsg.setText("");
+    }
+
+    @FXML
+    public void limpiarFormulario() {
+        limpiarBusqueda();
+        servPcCheck.setSelected(false);
+        consultaSalaCheck.setSelected(false);
+        lecturaSalaCheck.setSelected(false);
+        trabajoPersonalCheck.setSelected(false);
+        trabajoEquipoCheck.setSelected(false);
+        pcCombo.getSelectionModel().clearSelection();
+        grupoField.clear();
+        obsField.clear();
+        regMsg.setText("");
     }
 }

@@ -45,6 +45,7 @@
 
     <HBox spacing="10">
         <Button text="Registrar Visita" onAction="#registrarVisita"/>
+        <Button fx:id="limpiarTodoBtn" text="Limpiar" onAction="#limpiarFormulario"/>
         <Label fx:id="regMsg"/>
     </HBox>
 </VBox>
