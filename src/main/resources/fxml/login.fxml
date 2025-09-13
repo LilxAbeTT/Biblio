@@ -24,7 +24,11 @@
                   <RowConstraints />
                </rowConstraints>
                 </GridPane>
-                <Button onAction="#login" text="Ingresar" />
+                <CheckBox fx:id="showPassChk" text="Mostrar contraseña" />
+                <HBox alignment="CENTER" spacing="8">
+                    <Button onAction="#login" text="Ingresar" />
+                    <Button fx:id="btnSalir" onAction="#salir" text="Salir" />
+                </HBox>
                 <Label fx:id="msgLabel" styleClass="msg" />
             </VBox>
         </VBox>

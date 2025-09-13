@@ -147,3 +147,16 @@
     -fx-background-radius: 8;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
 }
+
+/* ===== Login extras ===== */
+.check-box {
+    -fx-text-fill: #2b2f36;
+}
+
+#btnSalir {
+    -fx-background-color: linear-gradient(to bottom, #e57373, #d32f2f);
+}
+
+#btnSalir:hover {
+    -fx-background-color: linear-gradient(to bottom, #ef9a9a, #e53935);
+}
