@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.biblio.controller.LoginController"
-            prefWidth="420" prefHeight="280" styleClass="root">
-    <center>
-        <VBox spacing="12" alignment="CENTER">
-            <Label text="Biblio - Recepción" styleClass="title"/>
-            <GridPane hgap="8" vgap="8">
-                <padding><Insets topRightBottomLeft="10"/></padding>
-                <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="userField" promptText="admin" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-                <TextField fx:id="userField" promptText="admin" GridPane.rowIndex="0" GridPane.columnIndex="1" onAction="#login"/>
-                <Label text="Contraseña:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <PasswordField fx:id="passField" promptText="admin" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-                <PasswordField fx:id="passField" promptText="admin" GridPane.rowIndex="1" GridPane.columnIndex="1" onAction="#login"/>
-            </GridPane>
-            <Button text="Ingresar" onAction="#login"/>
-            <Button text="Ingresar" onAction="#login" defaultButton="true"/>
-            <Label fx:id="msgLabel" styleClass="msg"/>
+<?import javafx.scene.image.ImageView?>
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.biblio.controller.LoginController" styleClass="root">
+    <children>
+        <VBox alignment="CENTER" spacing="12">
+            <ImageView image="..@images/tu_imagen.png"/>
+            <Label text="Bienvenido a Biblio" styleClass="login-title"/>
+            <VBox alignment="CENTER" spacing="12" styleClass="login-box">
+                <GridPane hgap="8" vgap="8">
+                    <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="userField" promptText="admin" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    <Label text="Contraseña:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <PasswordField fx:id="passField" promptText="admin" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                </GridPane>
+                <Button text="Ingresar" onAction="#login"/>
+                <Label fx:id="msgLabel" styleClass="msg"/>
+            </VBox>
         </VBox>
-    </center>
-</BorderPane>
+ </children>
+        </StackPane>

@@ -132,3 +132,18 @@
 .scroll-pane .viewport {
     -fx-background-color: transparent;
 }
+
+.login-title {
+    -fx-font-size: 24px;
+    -fx-font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    -fx-text-fill: #1d2735;
+}
+
+.login-box {
+    -fx-padding: 20;
+    -fx-spacing: 12;
+    -fx-alignment: center;
+    -fx-background-color: rgba(255,255,255,0.8);
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}

@@ -18,6 +18,7 @@ module com.biblio {
     requires org.apache.poi.ooxml;
     requires org.apache.pdfbox;
     requires jakarta.mail;
+    requires java.prefs;
 
     // Aperturas para FXML y propiedades JavaFX
     opens com.biblio.app to javafx.graphics;
