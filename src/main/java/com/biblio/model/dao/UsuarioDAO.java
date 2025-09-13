@@ -6,7 +6,7 @@ import com.biblio.model.entities.Usuario;
 import java.sql.*;
 
 public class UsuarioDAO {
-    public Usuario findByNombre(String nombre) throws SQLException {
+    public static Usuario findByNombre(String nombre) throws SQLException {
         try (PreparedStatement ps = Database.get().prepareStatement(
                 "SELECT id,nombre,contrasena,activo FROM Usuario WHERE nombre=?")) {
             ps.setString(1, nombre);
@@ -24,7 +24,7 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean validar(String nombre, String contrasena) throws SQLException {
+    public static boolean validar(String nombre, String contrasena) throws SQLException {
         Usuario u = findByNombre(nombre);
         return (u != null && u.isActivo() && u.getContrasena().equals(contrasena));
     }

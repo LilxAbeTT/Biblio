@@ -1,61 +1,50 @@
 package com.biblio.controller;
 
 import com.biblio.model.dao.UsuarioDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import java.util.prefs.Preferences;
+
+import java.net.URL;
 
 public class LoginController {
+
     @FXML private TextField userField;
     @FXML private PasswordField passField;
-    @FXML private TextField passFieldText;
-    @FXML private CheckBox rememberCheck;
-    @FXML private CheckBox showPassCheck;
     @FXML private Label msgLabel;
-
-    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
-    private final Preferences prefs = Preferences.userNodeForPackage(LoginController.class);
+    @FXML private ImageView logoView;
 
     @FXML
-    public void initialize() {
-        passFieldText.textProperty().bindBidirectional(passField.textProperty());
-
-        showPassCheck.selectedProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal) {
-                passFieldText.setVisible(true);
-                passFieldText.setManaged(true);
-                passField.setVisible(false);
-                passField.setManaged(false);
-            } else {
-                passFieldText.setVisible(false);
-                passFieldText.setManaged(false);
-                passField.setVisible(true);
-                passField.setManaged(true);
-            }
-        });
-
-        String savedUser = prefs.get("savedUser", "");
-        if (!savedUser.isEmpty()) {
-            userField.setText(savedUser);
-            rememberCheck.setSelected(true);
+    private void initialize() {
+        // Carga robusta del logo: intenta con getResource("/...") y con el context classloader
+        URL url = getClass().getResource("/images/logo.png");
+        if (url == null) {
+            url = Thread.currentThread().getContextClassLoader().getResource("images/logo.png");
         }
+
+        if (url != null) {
+            logoView.setImage(new Image(url.toExternalForm()));
+            System.out.println("Logo cargado desde: " + url);
+        } else {
+            System.err.println("No se encontró /images/logo.png en el classpath");
+        }
+
+        // Mensaje inicial opcional
+        // msgLabel.setText("");
     }
 
     @FXML
-    public void login(ActionEvent e) {
+    private void login() {
         try {
-            String u = userField.getText().trim();
-            String p = passField.getText().trim();
-            if (rememberCheck.isSelected()) {
-                prefs.put("savedUser", u);
-            } else {
-                prefs.remove("savedUser");
-            }
-            if (usuarioDAO.validar(u, p)) {
+            String u = userField.getText();
+            String p = passField.getText();
+
+            boolean ok = UsuarioDAO.validar(u, p); // tu lógica
+            if (ok) {
                 Stage st = (Stage) userField.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
                 st.setScene(new Scene(loader.load(), 1200, 750));

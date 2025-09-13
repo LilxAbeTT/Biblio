@@ -19,6 +19,7 @@ public class App extends Application {
         stage.setTitle("Biblio - Acceso");
         stage.setScene(scene);
         stage.show();
+
     }
 
     @Override
