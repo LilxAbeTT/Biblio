@@ -19,6 +19,13 @@ import java.time.LocalTime;
 
 public class RegistrarVisitaController {
 
+    @FXML private TextField numControlField, nombreField, generoField, carreraField;
+    @FXML private TextArea obsField;
+    @FXML private CheckBox servPcCheck, consultaRapidaCheck, lecturaSalaCheck, trabajoPersonalCheck, trabajoEquipoCheck;
+    @FXML private ComboBox<String> pcCombo;
+    @FXML private ComboBox<Integer> tamEquipoCombo;
+    @FXML private VBox integrantesBox;
+
     @FXML private TextField numControlField, nombreField, grupoField, obsField;
     @FXML private ComboBox<String> generoCombo, carreraCombo, pcCombo;
     @FXML private CheckBox servPcCheck, consultaSalaCheck, lecturaSalaCheck, trabajoPersonalCheck, trabajoEquipoCheck;
@@ -27,6 +34,7 @@ public class RegistrarVisitaController {
     @FXML private VBox datosEstudianteBox;
     @FXML private Button guardarBtn;
     @FXML private Label altaMsg, regMsg;
+    @FXML private Button registrarBtn, limpiarTodoBtn;
 
     private final EstudianteDAO estudianteDAO = new EstudianteDAO();
     private final PcDAO pcDAO = new PcDAO();
@@ -42,6 +50,17 @@ public class RegistrarVisitaController {
                 "Ing. Electromecánica", "Ing. En Sistemas Computacionales");
         try {
             pcDAO.findAllActivas().forEach(pc -> pcCombo.getItems().add(pc.getEtiqueta()));
+            tamEquipoCombo.getItems().addAll(2,3,4,5,6);
+
+            // show team size and integrantes only when working in team
+            tamEquipoCombo.visibleProperty().bind(trabajoEquipoCheck.selectedProperty());
+            tamEquipoCombo.managedProperty().bind(trabajoEquipoCheck.selectedProperty());
+            integrantesBox.visibleProperty().bind(trabajoEquipoCheck.selectedProperty());
+            integrantesBox.managedProperty().bind(trabajoEquipoCheck.selectedProperty());
+
+            // disable pc selection when working in team
+            servPcCheck.disableProperty().bind(trabajoEquipoCheck.selectedProperty());
+            pcCombo.disableProperty().bind(trabajoEquipoCheck.selectedProperty().or(servPcCheck.selectedProperty().not()));
         } catch (SQLException e) {
             regMsg.setText("Error cargando PCs: " + e.getMessage());
         }
@@ -212,12 +231,12 @@ public class RegistrarVisitaController {
             r.setTurno("MATUTINO"); // simple: podrías derivarlo por hora
             r.setEstudianteId(e.getId());
             r.setServPc(servPcCheck.isSelected());
-            r.setServConsultaSala(consultaSalaCheck.isSelected());
+            r.setServConsultaSala(consultaRapidaCheck.isSelected());
             r.setServLecturaSala(lecturaSalaCheck.isSelected());
             r.setServTrabajoPersonal(trabajoPersonalCheck.isSelected());
             r.setServTrabajoEquipo(trabajoEquipoCheck.isSelected());
-            r.setGrupoTamano(trabajoEquipoCheck.isSelected() && !grupoField.getText().isBlank()
-                    ? Integer.parseInt(grupoField.getText().trim()) : null);
+            r.setGrupoTamano(trabajoEquipoCheck.isSelected() && tamEquipoCombo.getValue() != null
+                    ? tamEquipoCombo.getValue() : null);
             r.setPcId(servPcCheck.isSelected() && pcCombo.getValue()!=null
                     ? pcDAO.findByEtiqueta(pcCombo.getValue()).getId() : null);
             r.setHoraEntrada(LocalTime.now());
@@ -244,5 +263,24 @@ public class RegistrarVisitaController {
             regMsg.setText("Error: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void limpiarFormulario() {
+        numControlField.clear();
+        nombreField.clear();
+        generoField.clear();
+        carreraField.clear();
+        servPcCheck.setSelected(false);
+        consultaRapidaCheck.setSelected(false);
+        lecturaSalaCheck.setSelected(false);
+        trabajoPersonalCheck.setSelected(false);
+        trabajoEquipoCheck.setSelected(false);
+        tamEquipoCombo.getSelectionModel().clearSelection();
+        pcCombo.getSelectionModel().clearSelection();
+        obsField.clear();
+        altaMsg.setText("");
+        regMsg.setText("");
+        integrantesBox.getChildren().clear();
     }
 }
