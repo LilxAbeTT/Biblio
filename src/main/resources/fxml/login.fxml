@@ -15,8 +15,15 @@
                 <Label text="Usuario:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
                 <TextField fx:id="userField" promptText="admin" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
                 <Label text="Contraseña:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <PasswordField fx:id="passField" promptText="admin" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                <StackPane GridPane.rowIndex="1" GridPane.columnIndex="1">
+                    <PasswordField fx:id="passField" promptText="admin"/>
+                    <TextField fx:id="passFieldText" promptText="admin" visible="false" managed="false"/>
+                </StackPane>
             </GridPane>
+            <HBox spacing="8">
+                <CheckBox fx:id="rememberCheck" text="Recordar usuario"/>
+                <CheckBox fx:id="showPassCheck" text="Mostrar contraseña"/>
+            </HBox>
             <Button text="Ingresar" onAction="#login"/>
             <Label fx:id="msgLabel" styleClass="msg"/>
         </VBox>
