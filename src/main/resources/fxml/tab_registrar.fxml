@@ -10,15 +10,25 @@
 
     <TitledPane text="Alta rápida / Búsqueda" expanded="true">
         <content>
-            <HBox spacing="8">
+            <VBox spacing="8">
                 <padding><Insets topRightBottomLeft="10"/></padding>
-                <TextField fx:id="numControlField" promptText="Num. control"/>
-                <TextField fx:id="nombreField" promptText="Nombre"/>
-                <TextField fx:id="generoField" promptText="Género"/>
-                <TextField fx:id="carreraField" promptText="Carrera"/>
-                <Button text="Guardar/Usar" onAction="#altaRapida"/>
-                <Label fx:id="altaMsg"/>
-            </HBox>
+
+                <HBox spacing="8">
+                    <TextField fx:id="numControlField" promptText="Num. control"/>
+                    <Button fx:id="buscarBtn" text="Buscar" onAction="#buscarEstudiante"/>
+                </HBox>
+
+                <VBox fx:id="datosEstudianteBox" spacing="8" visible="false" managed="false">
+                    <TextField fx:id="nombreField" promptText="Nombre"/>
+                    <ComboBox fx:id="generoCombo" promptText="Género"/>
+                    <ComboBox fx:id="carreraCombo" promptText="Carrera"/>
+                    <HBox spacing="8">
+                        <Button fx:id="guardarBtn" text="Guardar" onAction="#guardarEstudiante"/>
+                        <Button fx:id="limpiarBtn" text="Limpiar" onAction="#limpiarBusqueda"/>
+                    </HBox>
+                    <Label fx:id="altaMsg"/>
+                </VBox>
+            </VBox>
         </content>
     </TitledPane>
 
