@@ -24,6 +24,7 @@ public class LoginController {
                 Stage st = (Stage) userField.getScene().getWindow();
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
                 st.setScene(new Scene(loader.load(), 1200, 750));
+                st.setMaximized(true);
                 st.setTitle("Biblio - Panel");
             } else {
                 msgLabel.setText("Usuario/contraseña incorrectos o inactivo.");
