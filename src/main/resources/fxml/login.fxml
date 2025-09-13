@@ -6,6 +6,8 @@
 
 <StackPane styleClass="root" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biblio.controller.LoginController">
     <children>
+        <VBox alignment="CENTER" spacing="12">
+            <ImageView fx:id="logoView" fitHeight="250.0" fitWidth="250.0" preserveRatio="true" />
         <VBox alignment="CENTER" spacing="12" StackPane.alignment="CENTER" maxWidth="360">
             <ImageView fx:id="logoView" fitHeight="250.0" fitWidth="1.0" preserveRatio="true" />
             <Label styleClass="login-title" text="Bienvenido a Biblio" />
