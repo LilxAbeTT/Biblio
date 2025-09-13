@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.biblio.controller.RegistrarVisitaController" spacing="10">
@@ -10,21 +11,39 @@
 
     <TitledPane text="Alta rápida / Búsqueda" expanded="true">
         <content>
-            <HBox spacing="8">
+            <VBox spacing="8">
                 <padding><Insets topRightBottomLeft="10"/></padding>
-                <TextField fx:id="numControlField" promptText="Num. control"/>
+                <TextField fx:id="numControlField" promptText="Num. control" onAction="#buscarEstudiante"/>
                 <TextField fx:id="nombreField" promptText="Nombre"/>
-                <TextField fx:id="generoField" promptText="Género"/>
-                <TextField fx:id="carreraField" promptText="Carrera"/>
-                <Button text="Guardar/Usar" onAction="#altaRapida"/>
+                <ComboBox fx:id="generoCombo" promptText="Género"/>
+                <ComboBox fx:id="carreraCombo" promptText="Carrera"/>
+                <Button text="Guardar/Usar" onAction="#guardarEstudiante"/>
                 <Label fx:id="altaMsg"/>
             </HBox>
+
+
+                <HBox spacing="8">
+                    <TextField fx:id="numControlField" promptText="Num. control"/>
+                    <Button fx:id="buscarBtn" text="Buscar" onAction="#buscarEstudiante"/>
+                </HBox>
+
+                <VBox fx:id="datosEstudianteBox" spacing="8" visible="false" managed="false">
+                    <TextField fx:id="nombreField" promptText="Nombre"/>
+                    <ComboBox fx:id="generoCombo" promptText="Género"/>
+                    <ComboBox fx:id="carreraCombo" promptText="Carrera"/>
+                    <HBox spacing="8">
+                        <Button fx:id="guardarBtn" text="Guardar" onAction="#guardarEstudiante"/>
+                        <Button fx:id="limpiarBtn" text="Limpiar" onAction="#limpiarBusqueda"/>
+                    </HBox>
+                    <Label fx:id="altaMsg"/>
+                </VBox>
+            </VBox>
         </content>
     </TitledPane>
 
     <TitledPane text="Servicios" expanded="true">
         <content>
-            <GridPane hgap="10" vgap="8">
+            <VBox spacing="10">
                 <padding><Insets topRightBottomLeft="10"/></padding>
                 <CheckBox fx:id="servPcCheck" text="Uso de computadora con internet"/>
                 <Label text="PC:" GridPane.columnIndex="1"/>
@@ -35,17 +54,55 @@
                 <CheckBox fx:id="trabajoPersonalCheck" text="Trabajo personal" GridPane.rowIndex="3"/>
                 <CheckBox fx:id="trabajoEquipoCheck" text="Trabajo en equipo" GridPane.rowIndex="4"/>
                 <Label text="Tamaño grupo:" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
-                <TextField fx:id="grupoField" promptText="n" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+                <ComboBox fx:id="tamEquipoCombo" GridPane.rowIndex="4" GridPane.columnIndex="2" prefWidth="80" visible="false" managed="false"/>
 
                 <Label text="Observación:" GridPane.rowIndex="5"/>
                 <TextField fx:id="obsField" GridPane.rowIndex="5" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
             </GridPane>
+
+
+                <!-- Tipo de trabajo -->
+                <VBox spacing="8">
+                    <HBox spacing="8">
+                        <CheckBox fx:id="trabajoPersonalCheck" text="Trabajo personal"/>
+                        <CheckBox fx:id="trabajoEquipoCheck" text="Trabajo en equipo"/>
+                        <ComboBox fx:id="tamEquipoCombo" visible="false" managed="false">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <Integer>2</Integer>
+                                    <Integer>3</Integer>
+                                    <Integer>4</Integer>
+                                    <Integer>5</Integer>
+                                    <Integer>6</Integer>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </HBox>
+                    <VBox fx:id="integrantesBox" spacing="5" visible="false" managed="false"/>
+                </VBox>
+
+                <!-- Tipo de servicio -->
+                <VBox spacing="8">
+                    <CheckBox fx:id="consultaRapidaCheck" text="Consulta rápida"/>
+                    <CheckBox fx:id="lecturaSalaCheck" text="Lectura en sala"/>
+                    <HBox spacing="8">
+                        <CheckBox fx:id="servPcCheck" text="Uso de computadora de internet"/>
+                        <ComboBox fx:id="pcCombo" prefWidth="140"/>
+                    </HBox>
+                </VBox>
+
+                <TextArea fx:id="obsField" promptText="Observaciones"/>
+            </VBox>
         </content>
     </TitledPane>
+    <VBox fx:id="integrantesBox" spacing="5" visible="false" managed="false"/>
 
     <HBox spacing="10">
         <Button text="Registrar Visita" onAction="#registrarVisita"/>
         <Button fx:id="limpiarTodoBtn" text="Limpiar" onAction="#limpiarFormulario"/>
+
+        <Button fx:id="registrarBtn" text="Registrar Visita" onAction="#registrarVisita"/>
+        <Button fx:id="limpiarTodoBtn" text="Limpiar todo" onAction="#limpiarFormulario"/>
         <Label fx:id="regMsg"/>
     </HBox>
 </VBox>
